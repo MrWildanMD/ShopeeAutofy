@@ -1,0 +1,7 @@
+1. Buka chrome kalian lalu ketikkan chrome://version/ pada url
+2. Lalu salin Profile Path dan isikan ke config.py
+contoh Profile Path:
+C:\\Users\\desita\\AppData\\Local\\Google\\Chrome\\User Data\\Default 1 tambahkan angka berapapun di akhir dan backslash di setiap dir, sebelum ditambah backslash C:\Users\desita\AppData\Local\Google\Chrome\User Data\Default 1
+3. Isikan config.py sesuai preferensi kalian lalu save
+4. Buka ShopeeFlashSale.py dan sesuaikan dengan produk kalian..jika produk memiliki variasi maka un-comment blok kode variasi
+5. Jika dirasa semuanya sudah diisi dan di save jalankan run.bat dan tunggu hingga masuk ke menu
