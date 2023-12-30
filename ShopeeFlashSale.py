@@ -79,7 +79,7 @@ class LoginShopee():
         try:
             browser.get(loginurl)
             inputEmail = WebDriverWait(browser, 20).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, "yReWDs")))
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="main"]/div/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div[1]/input')))
             inputEmail.send_keys(email)
             inputEmail.send_keys(Keys.TAB, password, Keys.ENTER)
             loginSuccess = WebDriverWait(browser, 50).until(
@@ -100,27 +100,27 @@ class AutoCheckout():
         print(Fore.GREEN + "[+} Bot Berjalan \n")
         try:
             # # jika produk memiliki variasi maka bot akan secara otomatis(random) memilihkannya
-            # if isVariation1Displayed(browser):
-            #     listVariasi = WebDriverWait(browser, 50).until(
-            #         EC.presence_of_all_elements_located((By.CLASS_NAME, "product-variation")))
-            #     print(Fore.CYAN + "Variasi: ")
-            #     for item in listVariasi:
-            #         print(Fore.YELLOW + item.text)
-            #         if item.is_enabled():
-            #             browser.execute_script("arguments[0].click();", item)
-            #             print(Fore.GREEN +
-            #                   "[+] Variasi yang dipilih: " + item.text)
+            if isVariation1Displayed(browser):
+                listVariasi = WebDriverWait(browser, 50).until(
+                    EC.presence_of_all_elements_located((By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div[1]/div/div/section[1]/section[2]/div/div[4]/div/div[2]/div/section[1]/div')))
+                print(Fore.CYAN + "Variasi: ")
+                for item in listVariasi:
+                    print(Fore.YELLOW + item.text)
+                    if item.is_enabled():
+                        browser.execute_script("arguments[0].click();", item)
+                        print(Fore.GREEN +
+                              "[+] Variasi yang dipilih: " + item.text)
             # # jika produk memiliki variasi maka bot akan secara otomatis(random) memilihkannya
-            # if isVariation2Displayed(browser):
-            #     listVariasi2 = WebDriverWait(browser, 50).until(
-            #         EC.presence_of_all_elements_located((By.CLASS_NAME, "product-variation")))
-            #     print(Fore.CYAN + "Variasi: ")
-            #     for item2 in listVariasi2:
-            #         print(Fore.YELLOW + item2.text)
-            #         if item2.is_enabled():
-            #             browser.execute_script("arguments[0].click();", item2)
-            #             print(Fore.GREEN +
-            #                   "[+] Variasi yang dipilih: " + item2.text)
+            if isVariation2Displayed(browser):
+                listVariasi2 = WebDriverWait(browser, 50).until(
+                    EC.presence_of_all_elements_located((By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div[1]/div/div/section[1]/section[2]/div/div[4]/div/div[2]/div/section[2]/div')))
+                print(Fore.CYAN + "Variasi: ")
+                for item2 in listVariasi2:
+                    print(Fore.YELLOW + item2.text)
+                    if item2.is_enabled():
+                        browser.execute_script("arguments[0].click();", item2)
+                        print(Fore.GREEN +
+                              "[+] Variasi yang dipilih: " + item2.text)
 
             # section qty atau jumlah barang jika bisa di tambah maka hapus tanda pagar mulai dari depan addQty
             # addQty = browser.find_element_by_class_name("icon-plus-sign")
@@ -130,7 +130,7 @@ class AutoCheckout():
             #     "iRO3yj").get_attribute('value')
             # print(Fore.YELLOW + "Jumlah: "+qty)
             buy = WebDriverWait(browser, 50).until(EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, '#main > div > div._193wCc > div.page-product > div > div.product-briefing.flex.card.zINA0e > div.flex.flex-auto._3-GQHh > div > div:nth-child(5) > div > div > button.btn.btn-solid-primary.btn--l._3Kiuzg')))
+                (By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div[1]/div/div/section[1]/section[2]/div/div[5]/div/div/button[2]')))
             buy.click()
             print(Fore.GREEN + "[+] BARANG BERHASIL DIMASUKKAN KE KERANJANG")
             co = WebDriverWait(browser, 50).until(EC.element_to_be_clickable(
@@ -139,8 +139,8 @@ class AutoCheckout():
             print(Fore.GREEN + "[+] BARANG BERHASIL DI CHECKOUT")
             # Payment default ShopeePay
             if isPaymentMethodDisplayed(browser):
-                listMethod = browser.find_elements_by_class_name(
-                    "product-variation")
+                listMethod = browser.find_elements_by_xpath(
+                    '//*[@id="main"]/div/div[2]/div/div[2]/div[4]/div[1]/div/div[1]/div[2]/div[1]')
                 print(Fore.CYAN + "Payment Methods:")
                 for method in listMethod:
                     print(Fore.BLUE + "Payment Method: " + method[0])
